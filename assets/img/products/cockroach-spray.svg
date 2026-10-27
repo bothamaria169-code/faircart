@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img">
+  <defs>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F1F5F2"/><stop offset="1" stop-color="#E1EAE4"/>
+    </linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#F2F5F7"/>
+      <stop offset="0.42" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F2F5F7"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#fff" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="shadow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#0E1726" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#0E1726" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#ground)"/>
+<ellipse cx="300.0" cy="520.0" rx="150.0" ry="26.0" fill="url(#shadow)"/>  <g>
+    <!-- trigger head -->
+    <path d="M262 118 h48 a10 10 0 0 1 10 10 v26 h-68 v-26 a10 10 0 0 1 10 -10 z" fill="#1B2739"/>
+    <path d="M246 154 h88 v20 h-88 z" fill="#1B2739" opacity=".85"/>
+    <path d="M244 128 h-38 a8 8 0 0 0 -8 8 v10 a8 8 0 0 0 8 8 h18 l20 14 v-40 z" fill="#1B2739"/>
+    <rect x="252" y="120" width="10" height="34" rx="4" fill="#1B2739" opacity=".6"/>
+    <!-- neck -->
+    <rect x="268" y="174" width="64" height="24" fill="#1B2739" opacity=".9"/>
+    <!-- body -->
+    <path d="M252 198 h96 a26 26 0 0 1 26 26 v230 a26 26 0 0 1 -26 26 h-96 a26 26 0 0 1 -26 -26 v-230 a26 26 0 0 1 26 -26 z" fill="url(#body)"/>
+    <rect x="240" y="210" width="20" height="248" rx="10" fill="url(#sheen)"/>
+    <!-- label plate -->
+    <rect x="240" y="272" width="120" height="132" rx="10" fill="#fff" opacity=".94"/><text x="300.0" y="316.0" text-anchor="middle" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="20.0" font-weight="700" letter-spacing="1.20" fill="#0E1726">COCKROACH</text><text x="300.0" y="342.0" text-anchor="middle" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="12.0" font-weight="600" letter-spacing="1.20" fill="#5A6675">100ml eliminator</text><rect x="262" y="356" width="76" height="2" fill="#E2E6EC"/><text x="300.0" y="384.0" text-anchor="middle" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="10.0" font-weight="800" letter-spacing="2.20" fill="#12805C">FAIRCART</text></g>
+</svg>

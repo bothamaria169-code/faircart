@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img">
+  <defs>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F1F5F2"/><stop offset="1" stop-color="#DFE9E2"/>
+    </linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#C8955A"/>
+      <stop offset="0.42" stop-color="#E2B87F"/>
+      <stop offset="1" stop-color="#C8955A"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#fff" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="shadow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#0E1726" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#0E1726" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#ground)"/>
+<ellipse cx="300.0" cy="488.0" rx="152.0" ry="22.0" fill="url(#shadow)"/><rect x="174" y="196" width="28" height="46" rx="8" fill="#C2255C" opacity="1.00"/><rect x="182" y="186" width="12" height="10" rx="4" fill="#1B2739" opacity="1.00"/><rect x="216" y="196" width="28" height="46" rx="8" fill="#C2255C" opacity="1.00"/><rect x="224" y="186" width="12" height="10" rx="4" fill="#1B2739" opacity="1.00"/><rect x="258" y="196" width="28" height="46" rx="8" fill="#C2255C" opacity="1.00"/><rect x="266" y="186" width="12" height="10" rx="4" fill="#1B2739" opacity="1.00"/><rect x="300" y="196" width="28" height="46" rx="8" fill="#C2255C" opacity="1.00"/><rect x="308" y="186" width="12" height="10" rx="4" fill="#1B2739" opacity="1.00"/><rect x="342" y="196" width="28" height="46" rx="8" fill="#C2255C" opacity="1.00"/><rect x="350" y="186" width="12" height="10" rx="4" fill="#1B2739" opacity="1.00"/><rect x="384" y="196" width="28" height="46" rx="8" fill="#C2255C" opacity="1.00"/><rect x="392" y="186" width="12" height="10" rx="4" fill="#1B2739" opacity="1.00"/><rect x="180" y="218" width="28" height="46" rx="8" fill="#C2255C" opacity="0.75"/><rect x="188" y="208" width="12" height="10" rx="4" fill="#1B2739" opacity="0.75"/><rect x="222" y="218" width="28" height="46" rx="8" fill="#C2255C" opacity="0.75"/><rect x="230" y="208" width="12" height="10" rx="4" fill="#1B2739" opacity="0.75"/><rect x="264" y="218" width="28" height="46" rx="8" fill="#C2255C" opacity="0.75"/><rect x="272" y="208" width="12" height="10" rx="4" fill="#1B2739" opacity="0.75"/><rect x="306" y="218" width="28" height="46" rx="8" fill="#C2255C" opacity="0.75"/><rect x="314" y="208" width="12" height="10" rx="4" fill="#1B2739" opacity="0.75"/><rect x="348" y="218" width="28" height="46" rx="8" fill="#C2255C" opacity="0.75"/><rect x="356" y="208" width="12" height="10" rx="4" fill="#1B2739" opacity="0.75"/><rect x="390" y="218" width="28" height="46" rx="8" fill="#C2255C" opacity="0.75"/><rect x="398" y="208" width="12" height="10" rx="4" fill="#1B2739" opacity="0.75"/>  <g>
+    <path d="M156 262 h288 l-16 200 h-256 z" fill="url(#body)"/>
+    <path d="M156 262 h288 v18 h-288 z" fill="#0E1726" opacity=".14"/>
+    <rect x="212" y="308" width="176" height="118" rx="8" fill="#fff" opacity=".95"/>
+    <rect x="212" y="308" width="176" height="8" rx="4" fill="#12805C"/><text x="300.0" y="356.0" text-anchor="middle" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="18.0" font-weight="700" letter-spacing="1.08" fill="#0E1726">STUDENT PACK</text><text x="300.0" y="380.0" text-anchor="middle" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="11.0" font-weight="600" letter-spacing="1.32" fill="#5A6675">Lady Bloom Juice</text><text x="300.0" y="408.0" text-anchor="middle" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="12.0" font-weight="800" letter-spacing="0.96" fill="#12805C">12 × 500ml</text></g>
+</svg>

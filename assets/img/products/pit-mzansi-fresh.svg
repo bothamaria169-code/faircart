@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img">
+  <defs>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F1F5F2"/><stop offset="1" stop-color="#DFE9E2"/>
+    </linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8E96A2"/>
+      <stop offset="0.42" stop-color="#C3CAD3"/>
+      <stop offset="1" stop-color="#8E96A2"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#fff" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="shadow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#0E1726" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#0E1726" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#ground)"/>
+<ellipse cx="300.0" cy="502.0" rx="132.0" ry="22.0" fill="url(#shadow)"/>  <g>
+    <path d="M188 140 h224 a14 14 0 0 1 14 14 v300 a20 20 0 0 1 -20 20 h-212 a20 20 0 0 1 -20 -20 v-300 a14 14 0 0 1 14 -14 z" fill="url(#body)"/>
+    <path d="M188 140 h224 v22 h-224 z" fill="#0E1726" opacity=".16"/>
+    <rect x="200" y="168" width="20" height="288" rx="10" fill="url(#sheen)"/>
+    <rect x="214" y="230" width="172" height="176" rx="10" fill="#fff" opacity=".95"/>
+    <rect x="214" y="230" width="172" height="8" rx="4" fill="#12805C"/><text x="300.0" y="288.0" text-anchor="middle" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="20.0" font-weight="700" letter-spacing="1.20" fill="#0E1726">PIT MZANSI FRESH</text><text x="300.0" y="316.0" text-anchor="middle" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="12.0" font-weight="600" letter-spacing="1.44" fill="#5A6675">500g toilet treatment</text><circle cx="300" cy="352" r="20" fill="#12805C" opacity=".14"/><text x="300.0" y="350.0" text-anchor="middle" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="9.0" font-weight="800" letter-spacing="0.90" fill="#12805C">NET</text><text x="300.0" y="362.0" text-anchor="middle" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="9.0" font-weight="800" letter-spacing="0.90" fill="#12805C">WT</text><text x="300.0" y="392.0" text-anchor="middle" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="9.0" font-weight="800" letter-spacing="2.16" fill="#8A94A3">FAIRCART</text></g>
+</svg>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img">
+  <defs>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FBF6EA"/><stop offset="1" stop-color="#F3E9D3"/>
+    </linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#D8A72A"/>
+      <stop offset="0.42" stop-color="#F2CE63"/>
+      <stop offset="1" stop-color="#D8A72A"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#fff" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="shadow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#0E1726" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#0E1726" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#ground)"/>
+<ellipse cx="300.0" cy="500.0" rx="96.0" ry="18.0" fill="url(#shadow)"/>  <g>
+    <rect x="278" y="94" width="44" height="30" rx="8" fill="#E8DCC8"/>
+    <rect x="256" y="112" width="52" height="16" rx="8" fill="#E8DCC8"/>
+    <rect x="286" y="124" width="28" height="46" rx="6" fill="#D9C9AE"/>
+    <rect x="270" y="170" width="60" height="24" rx="4" fill="#CBB894"/>
+    <rect x="238" y="194" width="124" height="272" rx="16" fill="url(#body)"/>
+    <rect x="250" y="214" width="14" height="234" rx="7" fill="url(#sheen)"/>
+    <rect x="252" y="280" width="96" height="132" rx="6" fill="#fff" opacity=".92"/><text x="300.0" y="322.0" text-anchor="middle" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="15.0" font-weight="700" letter-spacing="0.90" fill="#0E1726">FIRMING</text><text x="300.0" y="344.0" text-anchor="middle" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="10.0" font-weight="600" letter-spacing="1.20" fill="#5A6675">Body oil · 60ml</text><rect x="278" y="358" width="44" height="2" fill="#E9A21B"/><text x="300.0" y="386.0" text-anchor="middle" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="8.0" font-weight="800" letter-spacing="1.92" fill="#8A94A3">FAIRCART</text></g>
+</svg>

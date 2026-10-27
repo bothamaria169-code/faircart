@@ -1,0 +1,23 @@
+# Secrets — never commit (the repository is public)
+config/secrets.php
+
+# One-time deploy scripts with tokens
+deploy-run.php
+deploy-check.php
+
+# Runtime data
+uploads/proof-of-payments/*
+uploads/reseller-docs/*
+uploads/products/*
+uploads/cache/*
+!uploads/**/.htaccess
+!uploads/**/.gitkeep
+*.log
+
+# Local working files
+*.zip
+WhatsApp Image *.jpeg
+assets/img/sample/
+assets/img/sample2/
+FairCart-Ecommerce-Overview.pdf
+.claude/

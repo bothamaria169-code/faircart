@@ -1,0 +1,8 @@
+---
+# cPanel → Git Version Control → Manage → Pull or Deploy → "Deploy HEAD Commit"
+# copies the repository into the live site. config/secrets.php and uploaded
+# files on the server are never touched (rsync without --delete only adds/updates).
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/wyimzdyd/public_html/
+    - /bin/rsync -a --exclude='.git' --exclude='.cpanel.yml' --exclude='config/secrets.php' ./ $DEPLOYPATH
