@@ -52,7 +52,8 @@ $sections = [
     ]],
     'groq' => ['Groq AI writer', 'fa-wand-magic-sparkles', 'Writes newsletter copy (and, if you like, social captions) in seconds. Free key at console.groq.com → API Keys.', [
         'groq_api_key'        => ['Groq API key', 'secret', 'Starts with gsk_'],
-        'groq_model'          => ['Model', 'select', null, ['llama-3.3-70b-versatile' => 'Llama 3.3 70B (best writing)', 'llama-3.1-8b-instant' => 'Llama 3.1 8B (fastest)', 'openai/gpt-oss-120b' => 'GPT-OSS 120B']],
+        'groq_model'          => ['Model', 'select', 'The models your Groq key can use right now (best writers first). If Groq retires the one you pick, FairCart switches to the next automatically.',
+                                  ($groqModels = GroqWriter::models()) ? array_combine($groqModels, $groqModels) : [GroqWriter::model() => GroqWriter::model() . ' (save your key to see the full list)'], GroqWriter::DEFAULT_MODEL],
         'auto_newsletter'     => ['Automatic weekly newsletter', 'select', 'The cron job writes a newsletter with AI from your best sellers, new and sale products.', ['off' => 'Off', 'draft' => 'Write a draft for me to check', 'send' => 'Write it and send it automatically']],
         'auto_newsletter_day' => ['On', 'select', null, ['1' => 'Monday', '2' => 'Tuesday', '3' => 'Wednesday', '4' => 'Thursday', '5' => 'Friday', '6' => 'Saturday', '7' => 'Sunday'], '4'],
         'auto_newsletter_hour'=> ['At (hour, 0–23)', 'number', 'South African time.', null, '9'],
@@ -129,8 +130,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && verify_csrf((string) ($_POST['csrf_
                         return ['ok', 'iKhokha accepted the keys and made a R5.00 test payment link: ' . $url . ' (nothing is charged unless someone pays it).'];
                     })(),
                     'groq' => (function () {
+                        $models = GroqWriter::models(true);
+                        if ($models && !in_array(GroqWriter::model(), $models, true)) {
+                            set_setting('groq_model', $models[0]);
+                        }
                         $d = GroqWriter::json('Reply with JSON {"line": "..."}', 'Write one friendly sentence welcoming shoppers to FairCart, a South African online shop.');
-                        return ['ok', 'Groq is working: "' . ($d['line'] ?? '?') . '"'];
+                        return ['ok', 'Groq is working with ' . GroqWriter::model() . ' (' . count($models) . ' models available): "' . ($d['line'] ?? '?') . '"'];
                     })(),
                     'imagekit' => ['ok', ImageKit::test()],
                     default => $msg,

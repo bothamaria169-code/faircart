@@ -19,9 +19,55 @@ final class GroqWriter
         return secret_get('groq_api_key') !== '';
     }
 
+    /** Best writers first; the first one the key can actually use is the fallback. */
+    private const PREFERRED = [
+        'llama-3.3-70b-versatile', 'openai/gpt-oss-120b', 'moonshotai/kimi-k2-instruct',
+        'meta-llama/llama-4-maverick-17b-128e-instruct', 'qwen/qwen3-32b', 'openai/gpt-oss-20b',
+        'meta-llama/llama-4-scout-17b-16e-instruct', 'llama-3.1-8b-instant',
+    ];
+
     public static function model(): string
     {
         return (string) get_setting('groq_model', self::DEFAULT_MODEL);
+    }
+
+    /**
+     * Chat models this key can use, asked from Groq and cached for a day —
+     * Groq retires models often, so a hard-coded list goes stale.
+     *
+     * @return list<string>
+     */
+    public static function models(bool $refresh = false): array
+    {
+        $cached = json_decode((string) get_setting('groq_models', ''), true);
+        if (!$refresh && is_array($cached) && ($cached['at'] ?? 0) > time() - 86400 && !empty($cached['ids'])) {
+            return $cached['ids'];
+        }
+        if (!self::configured()) {
+            return [];
+        }
+        $r = http_request('GET', 'https://api.groq.com/openai/v1/models', [
+            'headers' => ['Authorization' => 'Bearer ' . secret_get('groq_api_key')], 'timeout' => 20,
+        ]);
+        $ids = [];
+        foreach ($r['json']['data'] ?? [] as $m) {
+            $id = (string) ($m['id'] ?? '');
+            // Speech, guard and embedding models cannot write copy.
+            if ($id !== '' && ($m['active'] ?? true) && !preg_match('/whisper|tts|guard|embed|playai|orpheus|distil|compound/i', $id)) {
+                $ids[] = $id;
+            }
+        }
+        if (!$ids) {
+            return is_array($cached) ? ($cached['ids'] ?? []) : [];
+        }
+        // Preferred models first, then the rest alphabetically.
+        usort($ids, function ($a, $b) {
+            $pa = array_search($a, self::PREFERRED, true);
+            $pb = array_search($b, self::PREFERRED, true);
+            return ($pa === false ? 99 : $pa) <=> ($pb === false ? 99 : $pb) ?: strcmp($a, $b);
+        });
+        set_setting('groq_models', json_encode(['at' => time(), 'ids' => $ids]));
+        return $ids;
     }
 
     /** One chat completion that must come back as a JSON object. */
@@ -30,24 +76,55 @@ final class GroqWriter
         if (!self::configured()) {
             throw new RuntimeException('Add a Groq API key under Admin → Integrations first.');
         }
-        $r = http_request('POST', self::ENDPOINT, [
-            'headers' => ['Authorization' => 'Bearer ' . secret_get('groq_api_key')],
-            'json'    => [
-                'model'           => self::model(),
-                'temperature'     => $temperature,
-                'max_tokens'      => 1200,
-                'response_format' => ['type' => 'json_object'],
-                'messages'        => [['role' => 'system', 'content' => $system], ['role' => 'user', 'content' => $user]],
-            ],
-            'timeout' => 60,
-        ]);
-        if ($r['error'] !== '') {
-            throw new RuntimeException('Could not reach Groq: ' . $r['error']);
+        $model = self::model();
+        $jsonMode = true;
+        for ($attempt = 0; $attempt < 3; $attempt++) {
+            $body = [
+                'model'       => $model,
+                'temperature' => $temperature,
+                'max_tokens'  => 1500,
+                'messages'    => [['role' => 'system', 'content' => $system], ['role' => 'user', 'content' => $user]],
+            ];
+            if ($jsonMode) {
+                $body['response_format'] = ['type' => 'json_object'];
+            }
+            $r = http_request('POST', self::ENDPOINT, [
+                'headers' => ['Authorization' => 'Bearer ' . secret_get('groq_api_key')],
+                'json'    => $body,
+                'timeout' => 60,
+            ]);
+            if ($r['error'] !== '') {
+                throw new RuntimeException('Could not reach Groq: ' . $r['error']);
+            }
+            if ($r['status'] < 400) {
+                break;
+            }
+            $msg = (string) ($r['json']['error']['message'] ?? 'HTTP ' . $r['status']);
+            $code = (string) ($r['json']['error']['code'] ?? '');
+            if (preg_match('/does not exist|decommissioned|not have access|model_not_found|no longer supported/i', $msg . ' ' . $code)) {
+                // The saved model is gone: switch to the best one this key can use and remember it.
+                $next = array_values(array_diff(self::models(true), [$model]))[0] ?? null;
+                if ($next === null) {
+                    throw new RuntimeException('Groq said: ' . $msg);
+                }
+                $model = $next;
+                set_setting('groq_model', $model);
+                continue;
+            }
+            if ($jsonMode && stripos($msg, 'response_format') !== false) {
+                $jsonMode = false;
+                continue;
+            }
+            throw new RuntimeException('Groq said: ' . $msg);
         }
-        if ($r['status'] >= 400) {
+        if (($r['status'] ?? 500) >= 400) {
             throw new RuntimeException('Groq said: ' . ($r['json']['error']['message'] ?? 'HTTP ' . $r['status']));
         }
-        $content = (string) ($r['json']['choices'][0]['message']['content'] ?? '');
+        $content = trim((string) ($r['json']['choices'][0]['message']['content'] ?? ''));
+        // Some models wrap JSON in ```json fences or think aloud first: keep the outermost object.
+        if (($a = strpos($content, '{')) !== false && ($b = strrpos($content, '}')) !== false) {
+            $content = substr($content, $a, $b - $a + 1);
+        }
         $data = json_decode($content, true);
         if (!is_array($data)) {
             throw new RuntimeException('Groq did not return usable copy. Try again.');
